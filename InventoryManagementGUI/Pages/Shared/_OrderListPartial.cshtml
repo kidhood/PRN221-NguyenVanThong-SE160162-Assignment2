@@ -1,0 +1,49 @@
+﻿@model List<InventoryManagementBO.Models.Order>
+
+@{
+    Layout = null;
+}
+
+<div class="card-body px-0 pb-2">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+            <thead>
+            <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order Date</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Total Cost</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in Model)
+            {
+                <form method="post" id="cartItemForm">
+                    <tr>
+                        <td class="align-middle text-center">
+                            <p class="text-xs font-weight-bold mb-0">@order.Id</p>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2 py-1">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">
+                                        @order.OrderDate
+                                    </h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">@order.TotalCost</p>
+                        </td>
+                        <td class="align-middle">
+                            <a class="badge badge-sm bg-gradient-success" style="cursor: pointer;" onclick="getCartItem('@order.Id')">
+                                <i class="material-icons opacity-10">open_in_new</i>
+                            </a>
+                        </td>
+                    </tr>
+                </form>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

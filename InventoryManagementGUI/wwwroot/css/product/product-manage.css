@@ -1,0 +1,15 @@
+﻿#editProductModal {
+    z-index: 9999;
+}
+
+.form-control {
+    border: 1px solid #ced4da !important; /* Add your desired border color here */
+    border-radius: 0.25rem !important;
+}
+
+/* Style to add border around the input field */
+.form-control-border {
+    border: 1px solid #ced4da; /* Add your desired border color here */
+    border-radius: 0.25rem; /* Add your desired border-radius here */
+}
+

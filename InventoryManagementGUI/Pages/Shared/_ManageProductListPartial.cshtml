@@ -1,0 +1,66 @@
+﻿@model List<InventoryManagementBO.Models.Product>
+
+@{
+    Layout = null;
+}
+
+<div class="card-body px-0 pb-2">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+            <thead>
+            <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product name</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quantity</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
+                <th class="text-secondary opacity-7"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var product in Model.Select((item, index) => (item,index)).ToList())
+            {
+                <tr>
+                    <td class="align-middle text-center">
+                        <p class="text-xs font-weight-bold mb-0">@product.item.Id</p>
+                    </td>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div>
+                                <img src="@product.item.ImagePath" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">
+                                    @product.item.Name
+                                </h6>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">@product.item.Description</p>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">@product.item.Quantity</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">@product.item.Price $</span>
+                    </td>
+                    <td class="align-middle">
+                        <a class="badge badge-sm bg-gradient-success" style="cursor: pointer;" onclick="openEditModal('@product.item.Id', '@product.item.Name', '@product.item.ImagePath',
+                             '@product.item.Quantity', '@product.item.Description', '@product.item.Price')">
+                            <i class="material-icons opacity-10">edit</i>
+                        </a>
+                    </td>
+                </tr>
+                <input type="hidden" asp-for="@Model[product.index].Id"/>
+                <input type="hidden" asp-for="@Model[product.index].Name"/>
+                <input type="hidden" asp-for="@Model[product.index].ImagePath"/>
+                <input type="hidden" asp-for="@Model[product.index].Quantity"/>
+                <input type="hidden" asp-for="@Model[product.index].Price"/>
+                <input type="hidden" asp-for="@Model[product.index].Description"/>
+                <input type="hidden" asp-for="@Model[product.index].SupplierId"/>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

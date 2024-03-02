@@ -1,0 +1,38 @@
+﻿@model ProductDetail
+@{ Layout = null; }
+<div class="mb-3">
+    <label for="productName" class="form-label">Name</label>
+    <input type="text" asp-for="@Model.Name" class="form-control" id="productName" placeholder="Enter product name"/>
+    <span class="text-danger" asp-validation-for="@Model.Name"></span>
+</div>
+<div class="mb-3">
+    <label for="productImagePath" class="form-label">Image Path</label>
+    <input type="text" class="form-control" asp-for="@Model.ImagePath" id="productImagePath" placeholder="Enter image path"/>
+    <span class="text-danger" asp-validation-for="@Model.ImagePath"></span>
+</div>
+<div class="mb-3">
+    <label for="productQuantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" asp-for="@Model.Quantity" id="productQuantity" placeholder="Enter quantity"/>
+    <span class="text-danger" asp-validation-for="@Model.Quantity"></span>
+</div>
+<div class="mb-3">
+    <label for="productDescription" class="form-label">Description</label>
+    <textarea class="form-control" asp-for="@Model.Description" id="productDescription" rows="3" placeholder="Enter product description"></textarea>
+    <span class="text-danger" asp-validation-for="@Model.Description"></span>
+</div>
+<div class="mb-3">
+    <label for="productPrice" class="form-label">Price</label>
+    <input type="number" class="form-control" asp-for="@Model.Price" id="productPrice" placeholder="Enter product price"/>
+    <span class="text-danger" asp-validation-for="@Model.Price"></span>
+</div>
+<input type="hidden" asp-for="@Model.Id" id="productId"/>
+
+<div class="input-group mb-3">
+    <select class="form-select bg-outline-dark-blue" aria-label="Default select example">
+        <option selected>Open this select Supplier</option>
+        @foreach (var item in Model.ListSupplier)
+        {
+            <option value="3">@item.Text</option>
+        }
+    </select>
+</div>
