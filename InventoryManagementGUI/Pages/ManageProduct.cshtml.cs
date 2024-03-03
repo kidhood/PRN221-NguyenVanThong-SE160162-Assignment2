@@ -4,6 +4,7 @@ using InventoryManagementBO.Models;
 using InventoryManagementBO.Utilities;
 using InventoryManagementGUI.Model;
 using InventoryManagementService.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -66,7 +67,7 @@ public class ManageProduct : PageModel
                 result = new PostResult
                 {
                     Result = Result.Ok,
-                    Data = string.Empty
+                    Data = "add"
                 };
                 return new JsonResult(result);
             }
@@ -76,13 +77,37 @@ public class ManageProduct : PageModel
             result = new PostResult
             {
                 Result = Result.Ok,
-                Data = string.Empty
+                Data = "update"
             };
             return new JsonResult(result);
         }
 
 
         return new BadRequestResult();
+    }
+
+    public IActionResult OnPostDeleteProduct()
+    {
+        PostResult result = null;
+        var pro = new Product();
+        pro.Id = ProductDetail.Id;
+        pro.IsDelete = true;
+        if (productService.UpdateProduct(pro))
+        {
+            result = new PostResult
+            {
+                Result = Result.Ok,
+                Data = "update"
+            };
+            return new JsonResult(result);
+        }
+
+        result = new PostResult
+        {
+            Result = Result.Error,
+            Data = "update"
+        };
+        return new JsonResult(result);
     }
 
     private Product CreateProduct()

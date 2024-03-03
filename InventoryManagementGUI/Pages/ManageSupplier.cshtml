@@ -1,17 +1,14 @@
 ﻿@page
-@model ManageProduct
+@model ManageSupplier
 
 @{
     Layout = null;
 }
 <html>
 <head>
-    <title>Product</title>
+    <title>Supplier</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-        Products
-    </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"/>
     <!-- Nucleo Icons -->
@@ -28,7 +25,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js"></script>
-    <script src="~/js/product/productManage.js"></script>
+    <script src="~/js/supplier/supplierManage.js"></script>
     <script src="~/js/core/popper.min.js"></script>
     <script src="~/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="~/js/plugins/smooth-scrollbar.min.js"></script>
@@ -46,9 +43,9 @@
                         <li class="breadcrumb-item text-sm">
                             <a class="opacity-5 text-dark" href="javascript:">Pages</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Products</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Page</li>
                     </ol>
-                    <h6 class="font-weight-bolder mb-0">Product</h6>
+                    <h6 class="font-weight-bolder mb-0">Supplier</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -82,19 +79,19 @@
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Products table</h6>
+                                <h6 class="text-white text-capitalize ps-3">Supplier table</h6>
                             </div>
 
                             <div class="badge rounded-pill bg-primary float-end mt-2" style="cursor: pointer;">
                                 <i class="material-icons opacity-10" style="vertical-align: middle;">precision_manufacturing</i>
                                 <span id="cartBadge" class="align-middle" onclick="openEditModal('', '', '','', '', '')">
-                                    Create new product
+                                    Create new supplier
                                 </span>
                             </div>
                         </div>
 
                         <div id="listPartial">
-                            <partial name="Shared/_ManageProductListPartial" model="Model.ListProduct"/>
+                            <partial name="Shared/_ManagesSupplierListPartial" model="@Model.ListSupplier"/>
                         </div>
 
                     </div>
@@ -150,16 +147,16 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h5 class="modal-title" id="editProductModalLabel">Edit Product Details</h5>
+                        <h5 class="modal-title" id="editProductModalLabel">Edit Supplier Details</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <partial name="Shared/_AddOrEditProduct" model="@Model.ProductDetail"/>
+                        <partial name="Shared/_AddOrEditSupplier" model="@Model.SupplierDetail"/>
                     </div>
                     <div class="float-end">
-                        <button type="button" onclick="saveProductChanges()" class="btn btn-primary">Save Changes</button>
+                        <button type="button" onclick="saveSupplierChanges()" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>

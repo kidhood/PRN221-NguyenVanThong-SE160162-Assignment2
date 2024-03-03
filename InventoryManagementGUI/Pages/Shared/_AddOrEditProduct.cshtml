@@ -28,11 +28,19 @@
 <input type="hidden" asp-for="@Model.Id" id="productId"/>
 
 <div class="input-group mb-3">
-    <select class="form-select bg-outline-dark-blue" aria-label="Default select example">
+    <select class="form-select bg-outline-dark-blue" aria-label="Default select example" id="supplierSelect" onchange="updateSupplierId()">
         <option selected>Open this select Supplier</option>
         @foreach (var item in Model.ListSupplier)
         {
-            <option value="3">@item.Text</option>
+            <div>
+                <option value="@item.Value">@item.Text</option>
+            </div>
         }
     </select>
 </div>
+@foreach (var item in Model.ListSupplier.Select((x, index) => (x, index)).ToList())
+{
+    <input type="hidden" asp-for="@Model.ListSupplier[item.index].Text"/>
+    <input type="hidden" asp-for="@Model.ListSupplier[item.index].Value"/>
+}
+<input type="hidden" id="supplierId" asp-for="@Model.SupplierId"/>

@@ -1,0 +1,64 @@
+﻿@model List<InventoryManagementBO.Models.Supplier>
+
+@{
+    Layout = null;
+}
+
+<div class="card-body px-0 pb-2">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+            <thead>
+            <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Supplier name</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                <th class="text-secondary opacity-7"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var supplier in Model.Select((item, index) => (item,index)).ToList())
+            {
+                <tr>
+                    <td class="align-middle text-center">
+                        <p class="text-xs font-weight-bold mb-0">@supplier.item.Id</p>
+                    </td>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">
+                                    @supplier.item.Name
+                                </h6>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">@supplier.item.Phone</p>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">@supplier.item.Email</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">@supplier.item.Address $</span>
+                    </td>
+                    <td class="align-middle">
+                        <a class="badge badge-sm bg-gradient-success" style="cursor: pointer;" onclick="openEditModal('@supplier.item.Id','@supplier.item.Name','@supplier.item.Phone','@supplier.item.Email','@supplier.item.Address')">
+                            <i class="material-icons opacity-10">edit</i>
+                        </a>
+
+                        <a class="badge badge-sm bg-gradient-danger ms-3" style="cursor: pointer;" onclick="confirmDeleteProduct('@supplier.item.Id')">
+                            <i class="material-icons opacity-10">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                <input type="hidden" asp-for="@Model[supplier.index].Id"/>
+                <input type="hidden" asp-for="@Model[supplier.index].Name"/>
+                <input type="hidden" asp-for="@Model[supplier.index].Phone"/>
+                <input type="hidden" asp-for="@Model[supplier.index].Email"/>
+                <input type="hidden" asp-for="@Model[supplier.index].Address"/>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model SupplierDetail
+@{ Layout = null; }
+<div class="mb-3">
+    <label for="productName" class="form-label">Name</label>
+    <input type="text" asp-for="@Model.Name" class="form-control" id="productName" placeholder="Enter supplier name"/>
+    <span class="text-danger" asp-validation-for="@Model.Name"></span>
+</div>
+<div class="mb-3">
+    <label for="productImagePath" class="form-label">Phone</label>
+    <input type="text" class="form-control" asp-for="@Model.Phone" id="productImagePath" placeholder="Enter supplier phone"/>
+    <span class="text-danger" asp-validation-for="@Model.Phone"></span>
+</div>
+<div class="mb-3">
+    <label for="productQuantity" class="form-label">Email</label>
+    <input type="text" class="form-control" asp-for="@Model.Email" id="productQuantity" placeholder="Enter email"/>
+    <span class="text-danger" asp-validation-for="@Model.Email"></span>
+</div>
+<div class="mb-3">
+    <label for="productDescription" class="form-label">Address</label>
+    <textarea class="form-control" asp-for="@Model.Address" id="productDescription" rows="3" placeholder="Enter product Address"></textarea>
+    <span class="text-danger" asp-validation-for="@Model.Address"></span>
+</div>
+<input type="hidden" asp-for="@Model.Id" id="productId"/>

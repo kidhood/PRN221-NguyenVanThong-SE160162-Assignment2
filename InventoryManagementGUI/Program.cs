@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddMvc().AddRazorPagesOptions(options => options.Conventions.AddPageRoute("/Login", ""));
 builder.Services.AddSession(option => option.IdleTimeout = TimeSpan.FromMinutes(30));
 builder.Services.AddControllers().AddJsonOptions(options =>
 {

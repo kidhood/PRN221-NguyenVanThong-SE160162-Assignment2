@@ -20,7 +20,7 @@ public class Login : PageModel
     {
     }
 
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPost()
     {
         if (!ModelState.IsValid)
             return Page();
@@ -30,7 +30,7 @@ public class Login : PageModel
         {
             HttpContext.Session.SetInt32("Role", acc.Role.Value);
             HttpContext.Session.SetString("Name", acc.Name);
-            return Redirect("https://localhost:7165");
+            return Redirect("https://localhost:7165/Home");
         }
 
         return Page();

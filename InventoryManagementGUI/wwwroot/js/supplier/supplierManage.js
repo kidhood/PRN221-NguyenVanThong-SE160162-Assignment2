@@ -1,6 +1,6 @@
 ﻿function getListPagingManager(pageNumber) {
     $.ajax({
-        url: '/ManageProduct?handler=GetProductListPaging', // Replace with your actual controller and action
+        url: '/ManageSupplier?handler=GetSupplierListPaging', // Replace with your actual controller and action
         type: 'POST',
         contentType: 'application/json',
         headers: {
@@ -21,7 +21,7 @@ function search() {
     var searchText = document.getElementById('searchText').value;
 
     $.ajax({
-        url: '/ManageProduct?handler=SearchByName', // Replace with your actual controller and action
+        url: '/ManageSupplier?handler=SearchByName', // Replace with your actual controller and action
         type: 'POST',
         contentType: 'application/json',
         headers: {
@@ -38,31 +38,21 @@ function search() {
     });
 }
 
-function openEditModal(productId, productName, productImagePath, productQuantity, productDescription, productPrice, supplierName, supplierId) {
+function openEditModal(productId, productName, productImagePath, productQuantity, productDescription) {
     document.getElementById('productId').value = productId;
     document.getElementById('productName').value = productName;
     document.getElementById('productImagePath').value = productImagePath;
     document.getElementById('productQuantity').value = productQuantity;
     document.getElementById('productDescription').value = productDescription;
-    document.getElementById('productPrice').value = productPrice;
-    document.getElementById('supplierId').value = supplierId;
-
-    var selectElement = document.getElementById('supplierSelect');
-    var option = document.createElement("option");
-    option.value = supplierId
-    option.text = supplierName;
-    option.selected = true;
-    selectElement.appendChild(option);
-
     $('#editProductModal').modal('show');
 }
 
-function saveProductChanges() {
+function saveSupplierChanges() {
     var form = document.forms.namedItem("myForm");
     var data = new FormData(form);
 
     $.ajax({
-        url: '/ManageProduct?handler=CreateProduct',
+        url: '/ManageSupplier?handler=CreateSupplier',
         type: 'POST',
         headers: {
             RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
@@ -74,9 +64,9 @@ function saveProductChanges() {
             // Update the content of the partial container
             if (response.result == 'Ok') {
                 if (response.data == 'add') {
-                    showOutOfStockToastSuccess("Announce", "Create product successfully");
+                    showOutOfStockToastSuccess("Announce", "Create supplier successfully");
                 } else {
-                    showOutOfStockToastSuccess("Announce", "Update product successfully");
+                    showOutOfStockToastSuccess("Announce", "Update supplier successfully");
                 }
                 // Close the modal
                 $('#editProductModal').modal('hide');
@@ -87,14 +77,14 @@ function saveProductChanges() {
             }
         },
         error: function (error) {
-            showOutOfStockToastDanger("Announce", "Create product fail");
+            showOutOfStockToastDanger("Announce", "Create supplier fail");
             console.error('Error loading partial:', error);
         }
     });
 }
 
 function confirmDeleteProduct(id) {
-    var confirmDelete = window.confirm("Are you sure you want to delete this product?");
+    var confirmDelete = window.confirm("Are you sure you want to delete this supplier?");
 
     if (confirmDelete) {
         deleteProduct(id);
@@ -107,7 +97,7 @@ function deleteProduct(id) {
     var data = new FormData(form);
 
     $.ajax({
-        url: '/ManageProduct?handler=DeleteProduct',
+        url: '/ManageSupplier?handler=DeleteSupplier',
         type: 'POST',
         headers: {
             RequestVerificationToken: $('input:hidden[name="__RequestVerificationToken"]').val()
@@ -117,14 +107,14 @@ function deleteProduct(id) {
         contentType: false,
         success: function (response) {
             if (response.result == 'Ok') {
-                showOutOfStockToastSuccess("Announce", "Delete product successfully");
+                showOutOfStockToastSuccess("Announce", "Delete supplier successfully");
                 getListPagingManager(1);
             } else {
-                showOutOfStockToastSuccess("Announce", "Delete product fail");
+                showOutOfStockToastSuccess("Announce", "Delete supplier fail");
             }
         },
         error: function (error) {
-            showOutOfStockToastDanger("Announce", "Delete product failed");
+            showOutOfStockToastDanger("Announce", "Delete supplier failed");
         }
     });
 }

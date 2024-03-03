@@ -24,6 +24,7 @@
 
     <ItemGroup>
         <_ContentIncludedByDefault Remove="View\AddOrEditProduct.cshtml"/>
+        <_ContentIncludedByDefault Remove="wwwroot\js\background\home_page.jpg"/>
     </ItemGroup>
 
 </Project>

@@ -47,8 +47,12 @@
                     </td>
                     <td class="align-middle">
                         <a class="badge badge-sm bg-gradient-success" style="cursor: pointer;" onclick="openEditModal('@product.item.Id', '@product.item.Name', '@product.item.ImagePath',
-                             '@product.item.Quantity', '@product.item.Description', '@product.item.Price')">
+                             '@product.item.Quantity', '@product.item.Description', '@product.item.Price', '@product.item.Supplier?.Name', '@product.item.SupplierId')">
                             <i class="material-icons opacity-10">edit</i>
+                        </a>
+
+                        <a class="badge badge-sm bg-gradient-danger ms-3" style="cursor: pointer;" onclick="confirmDeleteProduct('@product.item.Id')">
+                            <i class="material-icons opacity-10">delete</i>
                         </a>
                     </td>
                 </tr>
