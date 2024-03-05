@@ -45,14 +45,16 @@ function openEditModal(productId, productName, productImagePath, productQuantity
     document.getElementById('productQuantity').value = productQuantity;
     document.getElementById('productDescription').value = productDescription;
     document.getElementById('productPrice').value = productPrice;
-    document.getElementById('supplierId').value = supplierId;
 
-    var selectElement = document.getElementById('supplierSelect');
-    var option = document.createElement("option");
-    option.value = supplierId
-    option.text = supplierName;
-    option.selected = true;
-    selectElement.appendChild(option);
+    if(supplierId){
+        document.getElementById('supplierId').value = supplierId;
+        var selectElement = document.getElementById('supplierSelect');
+        var option = document.createElement("option");
+        option.value = supplierId
+        option.text = supplierName;
+        option.selected = true;
+        selectElement.appendChild(option);
+    }
 
     $('#editProductModal').modal('show');
 }

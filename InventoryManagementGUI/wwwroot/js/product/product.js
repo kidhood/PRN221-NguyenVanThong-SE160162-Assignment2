@@ -110,6 +110,8 @@ function orderProduct() {
         data: JSON.stringify(shoppingCart),
         success: function (response) {
             showOutOfStockToastSuccess("Announcement", "Order Successfully");
+            shoppingCart = [];
+            updateCartBadge();
             // Close the modal
             $('#cartModal').modal('hide');
         },
